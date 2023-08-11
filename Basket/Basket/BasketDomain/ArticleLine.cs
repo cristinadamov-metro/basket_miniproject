@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Reflection.Metadata;
+using System.Text.Json.Serialization;
 
 namespace Basket.BasketDomain
 {
@@ -9,6 +10,7 @@ namespace Basket.BasketDomain
     {
         public Guid Id { get; set; }
         public Article Article { get; set; }
+        [JsonIgnore]
         public Basket Basket { get; set; }
         public int Quantity { get; set; }
         public Guid ArticleId { get; set; }

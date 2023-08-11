@@ -42,9 +42,7 @@ namespace Basket.BasketDomain
 
         public async Task<Basket?> Get(Guid id)
         {
-            var articleLines = _context.ArticleLines.Where(a => a.BasketId == id).ToList();
-            var basket = await _context.Baskets.Where(a => a.Id == id).SingleOrDefaultAsync();
-            basket.ArticleLines = articleLines;
+            var basket = await _context.Baskets.Include(b =>b.ArticleLines).Where(a => a.Id == id).SingleOrDefaultAsync();
             return basket;
         }
     }
